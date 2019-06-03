@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的搜索页</title>
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        /* 名称 */
+        .title{
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+            color: cadetblue;
+            margin-top: 100px;
+            margin-bottom: 20px;
+            font-family: fantasy;
+        }
+
+        /* 下面是搜索框样式 */
+        .searchBox{
+            width: 40%;
+            height: 35px;
+            border: 1px solid cadetblue;
+            outline: hidden;
+            border-radius: 2px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .inputBox{
+            border: none;
+            width: 84%;
+            height: 35px;
+            line-height: 35px;
+            outline: none;
+            padding-left: 10px;
+            /* 改变光标的颜色 */
+            caret-color:#008B8B;
+            font-size: 14px;
+        }
+
+        .searchBtn{
+            width: 65px;
+            height: 35px;
+            border: none;
+            position: absolute;
+            right: 0;
+            outline: none;
+            color: white;
+            font-size: 15px;
+            background-color: cornflowerblue;
+        }
+
+        /* 鼠标滑过按钮时背景色改变 */
+        .searchBtn:hover{
+            background-color: #497fdf;
+        }
+    </style>
+</head>
+<body>
+<div class="title">
+    <p>I &nbsp;tell&nbsp; you</p>
+</div>
+<div class="searchBox">
+    <input class="inputBox" placeholder="I will tell you all you want to know!">
+    <button class="searchBtn">搜索</button>
+</div>
+</body>
+</html>
