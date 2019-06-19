@@ -122,7 +122,7 @@ void LogicSystemSlave::update(const std::vector<std::string>& argv, std::string&
     Metadata* metadata = metadata_map[id];
     for (int i = 2; i < argv.size(); i+=2) {
         if (argv[i] == "parent")
-            metadata->updata_parent(atoi(argv[i+i].c_str()));
+            metadata->updata_parent(atoi(argv[i+1].c_str()));
         else if (argv[i] == "lastmodify_time")
             metadata->update_lastmodify_time(argv[i+1]);
         else if (argv[i] == "name")

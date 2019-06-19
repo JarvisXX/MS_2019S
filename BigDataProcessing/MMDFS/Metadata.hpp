@@ -21,7 +21,7 @@ public:
     }
 
     string summary() {
-        return to_string(id) + " " + to_string(parent) + " " + creation_time + " " + lastmodify_time + " " + to_string(size) + " " + name + " " + to_string(type);
+        return to_string(id) + " " + to_string(parent) + " " + creation_time + " " + name + " " + to_string(type);
     }
 
 private:

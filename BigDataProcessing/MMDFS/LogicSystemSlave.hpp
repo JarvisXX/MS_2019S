@@ -5,7 +5,7 @@
 #include <vector>
 #include <map>
 
-#include "Server.hpp"
+#include "ServerJ.hpp"
 #include "Metadata.hpp"
 
 class LogicSystemSlave : public System

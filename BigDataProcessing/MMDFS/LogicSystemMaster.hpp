@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "SystemTree.hpp"
-#include "Server.hpp"
+#include "ServerJ.hpp"
 #include "System.hpp"
 
 class SystemTree;
