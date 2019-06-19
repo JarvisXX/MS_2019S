@@ -1,8 +1,8 @@
 #ifndef SYSTEMTREE
 #define SYSTEMTREE
 
+#include <cstring>
 #include <vector>
-#include <string>
 
 #include "LogicSystemMaster.hpp"
 
@@ -26,8 +26,8 @@ public:
 private:
     class Node {
     public:
-        Node(SystemTree* mst);
-        Node(SystemTree* mst, Node* parent, const string name, const bool is_file, const int size, string& placeholder);
+        Node(SystemTree* st);
+        Node(SystemTree* st, Node* parent, const string name, const bool is_file, const int size, string& placeholder);
 
         Node* const& addChild(const string& name, const bool is_file, const int size, string& placeholder);
         void reattachTo(Node* new_parent, string& placeholder);
@@ -46,14 +46,14 @@ private:
 
     private:
         static int _node_count;
-        SystemTree* const mst;
+        SystemTree* const st;
         const int _object_id;
         string _name;
         const bool _is_file;
         Node* _parent;
         vector<Node*> _children;
 
-        Node(SystemTree* mst, bool is_file);
+        Node(SystemTree* st, bool is_file);
         void detach();
         void attachTo(Node* new_parent);
         void update();

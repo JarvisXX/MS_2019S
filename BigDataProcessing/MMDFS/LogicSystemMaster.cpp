@@ -1,6 +1,6 @@
 #include <iostream>
+#include <cstring>
 #include <vector>
-#include <string>
 #include <map>
 
 #include "LogicSystemMaster.hpp"
@@ -16,16 +16,16 @@ bool isOptionKW(const string& arg) {
 }
 
 LogicSystemMaster::LogicSystemMaster(Server* owner) {
-    this->systemtree = new SystemTree(this);
+    this->system_tree = new SystemTree(this);
     this->owner = owner;
 }
 
 LogicSystemMaster::~LogicSystemMaster() {
-    delete this->systemtree;
+    delete this->system_tree;
 }
 
 void LogicSystemMaster::pwd(const vector<string>& argv, string& placeholder) {
-    this->systemtree->getWorkingDirectory(placeholder);
+    this->system_tree->getWorkingDirectory(placeholder);
 }
 
 void LogicSystemMaster::mkdir(const vector<string>& argv, string& placeholder) {
@@ -33,7 +33,7 @@ void LogicSystemMaster::mkdir(const vector<string>& argv, string& placeholder) {
         placeholder = "Error: mkdir accepts 1 argument.\n";
     else {
         const string& name = argv[1];
-        this->systemtree->makeDirectory(name, placeholder);
+        this->system_tree->makeDirectory(name, placeholder);
     }
 }
 
@@ -51,42 +51,42 @@ void LogicSystemMaster::ls(const vector<string>&argv, string& placeholder) {
         else
             src = argv[i];
     }
-    this->systemtree->list(src, recursive, placeholder);
+    this->system_tree->list(src, recursive, placeholder);
 }
 
 void LogicSystemMaster::readdir(const vector<string>& argv, string& placeholder) {
     string src = ".";
     if (argv.size() > 1)
         src = argv[1];
-    this->systemtree->list(argv[1], false, placeholder);
+    this->system_tree->list(argv[1], false, placeholder);
 }
 
 void LogicSystemMaster::cd(const vector<string>& argv, string& placeholder) {
     if (argv.size() == 1)
         placeholder = "Error: cd accepts 1 argument.\n";
     else
-        this->systemtree->changeDirectory(argv[1], placeholder);
+        this->system_tree->changeDirectory(argv[1], placeholder);
 }
 
 void LogicSystemMaster::mv(const vector<string>& argv, string& placeholder) {
     if (argv.size() < 3)
         placeholder = "Error: mv accepts 2 argument.\n";
     else
-        this->systemtree->move(argv[1], argv[2], placeholder);
+        this->system_tree->move(argv[1], argv[2], placeholder);
 }
 
 void LogicSystemMaster::stat(const vector<string>& argv, string& placeholder) {
     if (argv.size() == 1)
         placeholder = "Error: stat accepts 1 argument.\n";
     else
-        this->systemtree->state(argv[1], placeholder);
+        this->system_tree->state(argv[1], placeholder);
 }
 
 void LogicSystemMaster::touch(const vector<string>& argv, string& placeholder) {
     if (argv.size() == 1)
         placeholder = "Error: touch accepts 1 argument.\n";
     else
-        this->systemtree->touch(argv[1], placeholder);
+        this->system_tree->touch(argv[1], placeholder);
 }
 
 void LogicSystemMaster::rm(const vector<string>& argv, string& placeholder) {
@@ -106,7 +106,7 @@ void LogicSystemMaster::rm(const vector<string>& argv, string& placeholder) {
     if (src == "")
         placeholder = "Error: rm accepts 1 positional arguments.\n";
     else
-        this->systemtree->remove(src, recursive, placeholder);
+        this->system_tree->remove(src, recursive, placeholder);
 }
 
 void LogicSystemMaster::runCommandLine(const vector<string>& argv, string& placeholder) {

@@ -1,8 +1,8 @@
 #ifndef API
 #define API
 
+#include<cstring>
 #include<vector>
-#include<string>
 
 using namespace std;
 

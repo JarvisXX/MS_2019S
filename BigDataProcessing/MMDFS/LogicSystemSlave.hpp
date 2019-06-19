@@ -1,8 +1,8 @@
 #ifndef LOGICSYSTEMSLAVE
 #define LOGICSYSTEMSLAVE
 
+#include <cstring>
 #include <vector>
-#include <string>
 #include <map>
 
 #include "Server.hpp"

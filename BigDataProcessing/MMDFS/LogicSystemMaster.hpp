@@ -1,8 +1,8 @@
 #ifndef LOGICSYSTEMMASTER
 #define LOGICSYSTEMMASTER
 
+#include <cstring>
 #include <vector>
-#include <string>
 
 #include "SystemTree.hpp"
 #include "Server.hpp"
@@ -19,7 +19,7 @@ public:
     void runCommandLine(const std::vector<std::string>& argv, std::string& placeholder);
 
 private:
-    SystemTree* systemtree;
+    SystemTree* system_tree;
 
     void pwd(const std::vector<std::string>& argv, std::string& placeholder);
     void mkdir(const std::vector<std::string>& argv, std::string& placeholder);

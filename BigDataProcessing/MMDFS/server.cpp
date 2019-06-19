@@ -1,32 +1,26 @@
-#include <string>
 #include <iostream>
-#include "goldenipcode.hpp"
+#include <cstring>
+
 #include "Server.hpp"
 
-#define N 512
+using namespace std;
 
-int main(int argc, char *argv[])
-{
-
-    std::string localIP;
-    std::string masterIP;
+int main(int argc, char *argv[]) {
+    string localIP;
+    string masterIP;
     int localport, masterport;
     int numslaves = -1;
-
-    if (argc == 3)
-    {
+    if (argc == 3) {
         localport = masterport = atoi(argv[1]);
         numslaves = atoi(argv[2]);
     }
-    else if (argc == 4)
-    {
+    else if (argc == 4) {
         localport = atoi(argv[1]);
-        masterIP = std::string(argv[2]);
+        masterIP = string(argv[2]);
         masterport = atoi(argv[3]);
     }
-    else
-    {
-        std::string usage_msg = ""
+    else {
+        string usage_msg = ""
         "Usage:\n"
         "\tfor master server: ./server PORT NUMSLAVES\n"
         "\t\tPORT     : port used to communicate with other servers\n"
@@ -35,17 +29,10 @@ int main(int argc, char *argv[])
         "\t\tPORT      : used to communicate with the master server\n"
         "\t\tMASTERADDR: IP address of master server\n"
         "\t\tMASTERPORT: port to access master server\n";
-        std::cout << usage_msg << std::endl;
-        std::cout << "The addresses of this machine is: " << std::endl;
-        list_IP();
+        cout << usage_msg << endl;
         exit(0);
     }
-
-    printf("server_0\n");
     Server server(localIP, localport, masterIP, masterport, numslaves);
-    printf("server_1\n");
     server.run();
-    printf("server_2\n");
-
     return 0;
 }

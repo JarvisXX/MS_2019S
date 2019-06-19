@@ -1,6 +1,6 @@
 #include <iostream>
+#include <cstring>
 #include <vector>
-#include <string>
 
 #include "LogicSystemSlave.hpp"
 
@@ -26,7 +26,7 @@ void LogicSystemSlave::pushto(const vector<string>& argv, string& placeholder) {
     for (auto it=metadata_map.begin(); it!=metadata_map.end(); it++) {
         string line;
         string message = "create " + it->second->summary();
-        this->owner->sendto(ip, port, message, line);
+        this->owner->sendTo(ip, port, message, line);
         if (line != "Success" && line != "Error: file id already exists.")
             placeholder = "Failure";
     }
@@ -52,7 +52,7 @@ void LogicSystemSlave::runCommandLine(const vector<string>& argv, string& placeh
         this->pushto(argv, placeholder);
     else
         placeholder = "Error: command " + command + " is not supported.\n";
-    std::cout << "------map------" << std::endl;
+    std::cout << "------metadata------" << std::endl;
     for (auto it=metadata_map.begin(); it!=metadata_map.end(); it++)
         std::cout << it->second->summary() << std::endl;}
 

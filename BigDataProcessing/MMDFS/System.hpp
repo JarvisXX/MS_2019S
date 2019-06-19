@@ -1,13 +1,12 @@
-#ifndef MSYSTEM
-#define MSYSTEM
+#ifndef SYSTEM
+#define SYSTEM
 
+#include <cstring>
 #include <vector>
-#include <string>
 
 using namespace std;
 
-class System
-{
+class System {
 public:
     virtual void runCommandLine(const vector<string>& argv, string& placeholder) = 0;
 };

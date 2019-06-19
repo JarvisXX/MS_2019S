@@ -1,6 +1,6 @@
 #include <iostream>
+#include <cstring>
 #include <vector>
-#include <string>
 
 #include "API.hpp"
 

@@ -1,70 +1,48 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <netdb.h>
-
 #include <iostream>
-#include <string>
+#include <cstring>
+
 #include "API.hpp"
-#include "mconnection.hpp"
+#include "Connection.hpp"
 
 #define N 512
 
 using namespace std;
 
-int main(int argc, char *argv[])
-{
-    if (argc < 3)
-    {
+int main(int argc, char *argv[]) {
+    if (argc < 3) {
         printf("Error usage of HOSTNAME and PORT");
         exit(1);
     }
-
     string hostname = string(argv[1]);
     int portno = atoi(argv[2]);
-    mClientConnection con(hostname, portno);
-    int sockfd = con.get_sockfd();
+    ClientConnection con(hostname, portno);
+    int sockfd = con.getSockFD();
     char buffer[N];
-    while (true)
-    {
+    while (true) {
         printf("$ ");
-        bzero(buffer,N);
-        fgets(buffer,N-1,stdin);
+        bzero(buffer, N);
+        fgets(buffer, N-1, stdin);
         string line = string(buffer);
         vector<string> command;
         tokenize(line, command);
         if (command.size() == 0)
-        {
             continue;
-        }
-        else
-        {
+        else {
             if (command[0] == "exit" or command[0] == "quit")
-            {
                 break;
-            }
-            else
-            {
+            else {
                 string message(buffer);
-                if (!con.writedown(message))
-                {
-                    con = mClientConnection(hostname, portno);
+                if (!con.writeDown(message)) {
+                    con = ClientConnection(hostname, portno);
                     continue;
                 }
                 string line;
-                if (!con.readin(line))
-                {
-                    con = mClientConnection(hostname, portno);
+                if (!con.readIn(line)) {
+                    con = ClientConnection(hostname, portno);
                     continue;
                 }
                 if (line != "<no output>\n")
-                {
                     cout << line;
-                }
             }
         }
     }

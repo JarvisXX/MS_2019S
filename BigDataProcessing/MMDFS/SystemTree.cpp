@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string>
+#include <cstring>
 #include <ctime>
 
 #include "API.hpp"
@@ -27,14 +27,14 @@ string getTimeStr() {
 // SystemTree::Node
 int SystemTree::Node::_node_count = 0;
 
-SystemTree::Node::Node(SystemTree* mst, bool is_file): mst(mst), _object_id(Node::_node_count++), _is_file(is_file) {}
+SystemTree::Node::Node(SystemTree* st, bool is_file): st(st), _object_id(Node::_node_count++), _is_file(is_file) {}
 
-SystemTree::Node::Node(SystemTree* mst): Node(mst, false) {
+SystemTree::Node::Node(SystemTree* st): Node(st, false) {
     this->_parent = nullptr;
     this->_name = "~";
 }
 
-SystemTree::Node::Node(SystemTree* mst, Node* parent, const string name, const bool is_file, const int size, string& placeholder): Node(mst, is_file) {
+SystemTree::Node::Node(SystemTree* st, Node* parent, const string name, const bool is_file, const int size, string& placeholder): Node(st, is_file) {
     if (parent == nullptr) {
         printf("Error: parent should never be nullptr. debug it.");
         exit(1);
@@ -51,8 +51,8 @@ void SystemTree::Node::systemCall(const string& message, string& placeholder) co
         exit(1);
     }
     vector<int> slaveids;
-    this->mst->lsm->owner->slavehash(this->_object_id, slaveids);
-    this->mst->lsm->owner->sendto(slaveids, message, placeholder);
+    this->st->lsm->owner->slaveHash(this->_object_id, slaveids);
+    this->st->lsm->owner->sendTo(slaveids, message, placeholder);
 }
 
 string SystemTree::Node::creationMessage() const {
@@ -146,7 +146,7 @@ SystemTree::Node* const& SystemTree::Node::addChild(const string& name, const bo
         printf("Error: this should never be a file. debug it.\n");
         exit(1);
     }
-    Node* child = new Node(this->mst, this, name, is_file, size, placeholder);
+    Node* child = new Node(this->st, this, name, is_file, size, placeholder);
     this->_children.push_back(child);
     return this->_children.back();
 }
