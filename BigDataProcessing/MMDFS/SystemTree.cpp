@@ -380,9 +380,9 @@ void SystemTree::recursiveList(const Node* const node, vector<string>& collected
 }
 
 void SystemTree::recursiveCleanMemory(Node* node, string& placeholder) {
-    while (node->children().size() != 0) {
-        recursiveCleanMemory(node->children()[0], placeholder);
-        node->releaseChild(0, placeholder);    
+    for(int i=0; i<node->children().size(); i++) {
+        recursiveCleanMemory(node->children()[i], placeholder);
+        node->releaseChild(i, placeholder);
     }
 }
 

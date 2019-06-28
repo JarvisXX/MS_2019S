@@ -87,11 +87,11 @@ void Server::initializeSlave() {
             if (tokens[0] == "Error:") {
                 printf("No need for replacement.");
                 exit(1);
-            }
+            } 
             this->slave_id = atoi(tokens[0].c_str());
             this->local_IP = tokens[1];
             cout << "My IP address is " + this->local_IP << endl;
-            cout << "Slave No." + to_string(this->slave_id) + ", at your service." << endl;
+            cout << "Slave No." + to_string(this->slave_id) + " at your service." << endl;
             break;
         }
         else

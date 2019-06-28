@@ -41,11 +41,11 @@ void LogicSystemSlave::runCommandLine(const vector<string>& argv, string& placeh
     if (command == "hello")
         this->shakehand(argv, placeholder);
     else if (command == "request")
-       this->request(argv, placeholder);
+        this->request(argv, placeholder);
     else if (command == "delete")
         this->remove(argv, placeholder);
     else if (command == "create")
-      this->create(argv, placeholder);
+        this->create(argv, placeholder);
     else if (command == "update")
         this->update(argv, placeholder);
     else if (command == "pushto")
@@ -54,7 +54,8 @@ void LogicSystemSlave::runCommandLine(const vector<string>& argv, string& placeh
         placeholder = "Error: command " + command + " is not supported.\n";
     std::cout << "------metadata------" << std::endl;
     for (auto it=metadata_map.begin(); it!=metadata_map.end(); it++)
-        std::cout << it->second->summary() << std::endl;}
+        std::cout << it->second->summary() << std::endl;
+}
 
 void LogicSystemSlave::request(const std::vector<std::string>& argv, std::string& placeholder) {
     if (argv.size() != 2) {
@@ -122,11 +123,11 @@ void LogicSystemSlave::update(const std::vector<std::string>& argv, std::string&
     Metadata* metadata = metadata_map[id];
     for (int i = 2; i < argv.size(); i+=2) {
         if (argv[i] == "parent")
-            metadata->updateParent(atoi(argv[i+1].c_str()));
+            metadata->updata_parent(atoi(argv[i+i].c_str()));
         else if (argv[i] == "lastmodify_time")
-            metadata->updateLastmodifyTime(argv[i+1]);
+            metadata->update_lastmodify_time(argv[i+1]);
         else if (argv[i] == "name")
-            metadata->updateName(argv[i+1]);
+            metadata->update_name(argv[i+1]);
         else {
             placeholder = "Error: unknown key value.";
             return;

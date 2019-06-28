@@ -25,7 +25,7 @@ private:
     const int master_port;
     const int num_slaves;
     bool is_master;
-    bool slave_id;
+    int slave_id;
     vector<vector<string> > slave_table;
     vector<ClientConnection*> connections;
     vector<bool> connecteds;
