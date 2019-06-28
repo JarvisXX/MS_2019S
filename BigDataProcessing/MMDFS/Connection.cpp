@@ -116,7 +116,7 @@ ClientConnection::ClientConnection(const string& hostname, int portno) {
         this->server->h_length);
     this->serv_addr.sin_port = htons(this->portno);
     if (connect(this->sockfd,(struct sockaddr *) &(this->serv_addr),sizeof(this->serv_addr)) < 0) {
-        cout << "Error: connection fails." << endl;
+        // cout << "Error: connection fails." << endl;
         return;
     }
 }
@@ -140,7 +140,7 @@ bool ClientConnection::writeDown(const string& message) {
     }
     int n = write(this->sockfd, message.c_str(), message.size());
     if (n < 0) {
-        cout << "Error: message writing non succeeded." << endl;
+        // cout << "Error: message writing non succeeded." << endl;
         return false;
     }
     return true;
